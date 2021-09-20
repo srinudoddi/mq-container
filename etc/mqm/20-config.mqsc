@@ -1,6 +1,0 @@
-delete ql(DEV.QUEUE.1)
-delete ql(DEV.QUEUE.2)
-delete ql(DEV.QUEUE.3)
-define ql(ROCKIT.TEST.1)
-define ql(ROCKIT.TEST.2)
-define ql(ROCKIT.TEST.3)
