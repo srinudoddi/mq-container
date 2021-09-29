@@ -57,6 +57,9 @@ COPY vendor/ ./vendor
 ENV CGO_CFLAGS="-I/opt/mqm/inc/" \
     CGO_LDFLAGS_ALLOW="-Wl,-rpath.*"
 ENV PATH="${PATH}:/opt/mqm/bin"
+ENV  GOARCH=amd64
+ENV  GOOS=linux
+ENV  PATH=$PATH:/usr/local/go/bin
 RUN go build -ldflags "-X \"main.ImageCreated=$(date --iso-8601=seconds)\" -X \"main.ImageRevision=$IMAGE_REVISION\" -X \"main.ImageSource=$IMAGE_SOURCE\" -X \"main.ImageTag=$IMAGE_TAG\"" ./cmd/runmqserver/
 RUN go build ./cmd/chkmqready/
 RUN go build ./cmd/chkmqhealthy/
