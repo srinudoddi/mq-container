@@ -29,7 +29,9 @@ RUN echo 'deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/azurecore/ tr
 RUN apt-get -y install wget
 RUN apt-get -y install curl
 RUN apt-get -y install golang
-ENV PATH=$PATH:/usr/local/go/bin
+#ENV PATH=$PATH:/usr/local/go/bin
+ENV GOROOT=$HOME/go
+ENV PATH=$PATH:$GOROOT/bin
 # The URL to download the MQ installer from in tar.gz format
 # This assumes an archive containing the MQ Non-Install packages
 ARG MQ_URL
