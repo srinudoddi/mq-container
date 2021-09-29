@@ -19,7 +19,8 @@ ARG MQ_URL="https://public.dhe.ibm.com/ibmdl/export/pub/software/websphere/messa
 ###############################################################################
 # Build stage to build Go code
 ###############################################################################
-FROM registry.redhat.io/ubi8/go-toolset:1.15.13-4 as builder
+#FROM registry.redhat.io/ubi8/go-toolset:1.15.13-4 as builder
+FROM ubuntu:16.04
 # The URL to download the MQ installer from in tar.gz format
 # This assumes an archive containing the MQ Non-Install packages
 ARG MQ_URL
