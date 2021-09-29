@@ -30,13 +30,16 @@ RUN apt-get -y install wget
 RUN apt-get -y install curl
 RUN apt-get -y install golang
 #ENV PATH=$PATH:/usr/local/go/bin
-ENV  GOARCH=amd64
-ENV  GOOS=linux
-ENV  PATH=$PATH:/usr/local/go/bin
+#ENV  GOARCH=amd64
+#ENV  GOOS=linux
+#ENV  PATH=$PATH:/usr/local/go/bin
 #ENV GOPATH=${HOME}/gopath
 #ENV PATH=${GOPATH}/bin:${PATH}
 # The URL to download the MQ installer from in tar.gz format
 # This assumes an archive containing the MQ Non-Install packages
+ENV  GOARCH=amd64
+ENV  GOOS=linux
+ENV  GO_WORKDIR=$PATH:/usr/local/go/bin
 ARG MQ_URL
 ARG IMAGE_REVISION="Not specified"
 ARG IMAGE_SOURCE="Not specified"
@@ -57,9 +60,6 @@ COPY vendor/ ./vendor
 ENV CGO_CFLAGS="-I/opt/mqm/inc/" \
     CGO_LDFLAGS_ALLOW="-Wl,-rpath.*"
 ENV PATH="${PATH}:/opt/mqm/bin"
-ENV  GOARCH=amd64
-ENV  GOOS=linux
-ENV  PATH=$PATH:/usr/local/go/bin
 RUN go build -ldflags "-X \"main.ImageCreated=$(date --iso-8601=seconds)\" -X \"main.ImageRevision=$IMAGE_REVISION\" -X \"main.ImageSource=$IMAGE_SOURCE\" -X \"main.ImageTag=$IMAGE_TAG\"" ./cmd/runmqserver/
 RUN go build ./cmd/chkmqready/
 RUN go build ./cmd/chkmqhealthy/
