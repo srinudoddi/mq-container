@@ -15,8 +15,8 @@
 ARG BASE_IMAGE=registry.redhat.io/ubi8/ubi-minimal
 ARG BASE_TAG=8.4-205
 ARG GO_WORKDIR=/opt/app-root/src/go/src/github.com/ibm-messaging/mq-container
-#ARG MQ_URL="https://public.dhe.ibm.com/ibmdl/export/pub/software/websphere/messaging/mqadv/9.2.3.0-IBM-MQ-Advanced-for-Developers-Non-Install-LinuxX64.tar.gz"
-ARG MQ_URL=https://public.dhe.ibm.com/ibmdl/export/pub/software/websphere/messaging/mqadv/mqadv_dev911_ubuntu_x86-64.tar.gz
+ARG MQ_URL="https://public.dhe.ibm.com/ibmdl/export/pub/software/websphere/messaging/mqadv/9.2.3.0-IBM-MQ-Advanced-for-Developers-Non-Install-LinuxX64.tar.gz"
+#ARG MQ_URL=https://public.dhe.ibm.com/ibmdl/export/pub/software/websphere/messaging/mqadv/mqadv_dev911_ubuntu_x86-64.tar.gz
 ###############################################################################
 # Build stage to build Go code
 ###############################################################################
