@@ -30,8 +30,9 @@ RUN apt-get -y install wget
 RUN apt-get -y install curl
 RUN apt-get -y install golang
 #ENV PATH=$PATH:/usr/local/go/bin
-ENV GOROOT=$HOME/go
-ENV PATH=$PATH:$GOROOT/bin
+ENV PATH=/usr/local/go/bin:${PATH}
+ENV GOPATH=${HOME}/gopath
+ENV PATH=${GOPATH}/bin:${PATH}
 # The URL to download the MQ installer from in tar.gz format
 # This assumes an archive containing the MQ Non-Install packages
 ARG MQ_URL
