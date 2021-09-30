@@ -16,30 +16,12 @@ ARG BASE_IMAGE=registry.redhat.io/ubi8/ubi-minimal
 ARG BASE_TAG=8.4-205
 ARG GO_WORKDIR=/opt/app-root/src/go/src/github.com/ibm-messaging/mq-container
 ARG MQ_URL="https://public.dhe.ibm.com/ibmdl/export/pub/software/websphere/messaging/mqadv/9.2.3.0-IBM-MQ-Advanced-for-Developers-Non-Install-LinuxX64.tar.gz"
-#ARG MQ_URL=https://public.dhe.ibm.com/ibmdl/export/pub/software/websphere/messaging/mqadv/mqadv_dev911_ubuntu_x86-64.tar.gz
 ###############################################################################
 # Build stage to build Go code
 ###############################################################################
-#FROM registry.redhat.io/ubi8/go-toolset:1.15.13-4 as builder
-FROM ubuntu:16.04
-RUN apt-get update && apt-get install -y apt-transport-https
-RUN echo 'deb http://private-repo-1.hortonworks.com/HDP/ubuntu14/2.x/updates/2.4.2.0 HDP main' >> /etc/apt/sources.list.d/HDP.list
-RUN echo 'deb http://private-repo-1.hortonworks.com/HDP-UTILS-1.1.0.20/repos/ubuntu14 HDP-UTILS main'  >> /etc/apt/sources.list.d/HDP.list
-RUN echo 'deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/azurecore/ trusty main' >> /etc/apt/sources.list.d/azure-public-trusty.list
-RUN apt-get -y install wget
-RUN apt-get -y install curl
-RUN apt-get -y install golang
-#ENV PATH=$PATH:/usr/local/go/bin
-#ENV  GOARCH=amd64
-#ENV  GOOS=linux
-#ENV  PATH=$PATH:/usr/local/go/bin
-#ENV GOPATH=${HOME}/gopath
-#ENV PATH=${GOPATH}/bin:${PATH}
+FROM registry.redhat.io/ubi8/go-toolset:1.15.13-4 as builder
 # The URL to download the MQ installer from in tar.gz format
 # This assumes an archive containing the MQ Non-Install packages
-ENV  GOARCH=amd64
-ENV  GOOS=linux
-ENV  GO_WORKDIR=$PATH:/usr/local/go/bin
 ARG MQ_URL
 ARG IMAGE_REVISION="Not specified"
 ARG IMAGE_SOURCE="Not specified"
